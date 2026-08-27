@@ -1743,6 +1743,10 @@ footer {
 
 @media (max-width: 640px) {
   section { padding: 64px 20px; }
+  /* shrink (not remove) the gap between a page-hero and the section right
+     after it — every inner page (about/apply/brothers/events/faq) shares
+     this pattern, so targeting the adjacent-sibling covers all of them */
+  .page-hero + section { padding-top: 28px; }
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   nav { min-width: unset; width: calc(100% - 32px); top: 12px; }
