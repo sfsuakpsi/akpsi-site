@@ -1,6 +1,7 @@
 // Nav scroll state — darkens pill when scrolled past hero
 const navEl = document.querySelector('nav');
-const heroEl = document.querySelector('.hero');
+// home page uses .hero, inner pages use .page-hero — check both
+const heroEl = document.querySelector('.hero') || document.querySelector('.page-hero');
 function updateNav() {
   if (!navEl) return;
   const threshold = heroEl ? heroEl.offsetHeight * 0.75 : window.innerHeight * 0.6;
