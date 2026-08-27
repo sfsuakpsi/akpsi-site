@@ -1047,6 +1047,8 @@ section {
   overflow: hidden;
   border: 1.5px solid rgba(126,200,227,0.2);
   transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
 }
 
 .event-card:hover {
@@ -1108,6 +1110,9 @@ section {
 
 .event-body {
   padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .event-body h3 {
@@ -1776,8 +1781,15 @@ footer {
   }
   .hamburger { display: flex; }
   .pillars-grid { grid-template-columns: 1fr; }
+  .brothers-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .brother-photo { height: 160px; }
+  .brother-info { padding: 12px; }
+  .brother-info h3 { font-size: 0.85rem; }
+  .brother-info .role, .brother-info .major { font-size: 0.72rem; }
   .footer-top { grid-template-columns: 1fr; }
   .stats-inner { flex-direction: column; gap: 24px; }
   .apply-form { padding: 28px 22px; }
   .page-hero { padding: 100px 20px 48px; }
+  /* mobile only: photo above the text in the president welcome section */
+  .president-photo { order: -1; margin-bottom: 8px; }
 }
