@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <section class="events-section">
+  <section class="events-section upcoming-events-section">
     <div class="events-inner">
 
       <h2 class="section-title">Upcoming Events</h2>
@@ -62,7 +62,7 @@
           <div class="event-body">
             <p>Learn about our brotherhood, professional opportunities, and the recruitment process, followed by an open Q&A.</p>
             <div class="event-meta">
-              <span>📍 TBD</span>
+              <span>📍 HSS 135</span>
               <span>🕖 7:00 PM</span>
             </div>
             <div class="event-click-hint">Click me for more details</div>
@@ -83,10 +83,14 @@
           <div class="event-body">
             <p>Upgrade your LinkedIn profile with a free, professional headshot taken by our brothers.</p>
             <div class="event-meta">
-              <span>📍 TBD</span>
+              <span>📍 Garden of Remembrance</span>
               <span>🕛 12:00 PM</span>
             </div>
             <div class="event-click-hint">Click me for more details</div>
+          </div>
+          <div class="event-extra-content" hidden>
+            <p class="event-extra-heading">Location</p>
+            <img src="../images/garden-of-remembrance.png" alt="Garden of Remembrance" class="event-modal-location-img" />
           </div>
         </div>
 
@@ -104,7 +108,7 @@
           <div class="event-body">
             <p>Join us in giving back to the community and experience our core value of service in action.</p>
             <div class="event-meta">
-              <span>📍 TBD</span>
+              <span>📍 LIB 121</span>
               <span>🕖 7:00 PM</span>
             </div>
             <div class="event-click-hint">Click me for more details</div>
@@ -125,7 +129,7 @@
           <div class="event-body">
             <p>Get personalized feedback and actionable tips from upperclassmen brothers to polish your resume for recruiting season.</p>
             <div class="event-meta">
-              <span>📍 TBD</span>
+              <span>📍 HSS 135</span>
               <span>🕖 7:00 PM</span>
             </div>
             <div class="event-click-hint">Click me for more details</div>
@@ -146,7 +150,7 @@
           <div class="event-body">
             <p>Gain valuable industry insights and career advice from our alumni working across top companies.</p>
             <div class="event-meta">
-              <span>📍 TBD</span>
+              <span>📍 HSS 135</span>
               <span>🕖 7:00 PM</span>
             </div>
             <div class="event-click-hint">Click me for more details</div>
@@ -166,9 +170,17 @@
           </div>
           <div class="event-body">
             <p>Catch our final info session and stick around for casual games and mingling before applications close.</p>
-            <div class="event-meta">
-              <span>📍 TBD</span>
-              <span>🕔 Info: 5:00 PM | 🕖 Social: 7:00 PM</span>
+            <div class="event-meta event-meta-split">
+              <div class="event-meta-row">
+                <span class="event-meta-label">Info</span>
+                <span>📍 HSS 135</span>
+                <span>🕔 5:00 PM</span>
+              </div>
+              <div class="event-meta-row">
+                <span class="event-meta-label">Social</span>
+                <span>📍 LIB 121</span>
+                <span>🕖 7:00 PM</span>
+              </div>
             </div>
             <div class="event-click-hint">Click me for more details</div>
           </div>
@@ -208,6 +220,41 @@
     </div>
   </section>
 
+  <section class="events-section partners-section">
+    <div class="events-inner">
+
+      <h2 class="section-title">Our Rush Partners</h2>
+
+      <div class="partners-grid">
+        <a class="partner-card" href="https://drinkpoppi.com/" target="_blank" rel="noopener">
+          <img src="../images/partners/poppi.svg.webp" alt="Poppi logo" />
+          <span>Poppi</span>
+        </a>
+        <a class="partner-card" href="https://www.drinkbubblr.com/" target="_blank" rel="noopener">
+          <img src="../images/partners/bubblr.png" alt="bubbl'r logo" class="partner-logo-lg" />
+          <span>bubbl'r</span>
+        </a>
+        <a class="partner-card" href="https://www.masachips.com/" target="_blank" rel="noopener">
+          <img src="../images/partners/masa.png" alt="Masa logo" />
+          <span>Masa</span>
+        </a>
+        <a class="partner-card" href="https://thepurcompany.com/" target="_blank" rel="noopener">
+          <img src="../images/partners/pur.png" alt="PUR logo" />
+          <span>PUR</span>
+        </a>
+        <a class="partner-card" href="https://kindpatches.com/" target="_blank" rel="noopener">
+          <img src="../images/partners/kind-patches.png" alt="Kind Patches logo" />
+          <span>Kind Patches</span>
+        </a>
+        <a class="partner-card" href="https://dudewipes.com/" target="_blank" rel="noopener">
+          <img src="../images/partners/dude-wipes.png" alt="DUDE Wipes logo" />
+          <span>DUDE Wipes</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <!-- EVENT MODAL -->
   <div id="event-modal" class="modal-overlay" aria-modal="true" role="dialog">
     <div class="modal-card event-modal-card" id="event-modal-card">
@@ -227,6 +274,7 @@
         <p id="event-modal-desc"></p>
         <div class="modal-meta" id="event-modal-location"></div>
         <div class="modal-meta" id="event-modal-time"></div>
+        <div class="modal-meta-split" id="event-modal-meta-split" hidden></div>
         <div class="event-modal-extra" id="event-modal-extra"></div>
       </div>
     </div>
@@ -268,6 +316,72 @@
   <style>
     .event-card { cursor: pointer; }
 
+    .partners-section .section-title {
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      text-align: center;
+    }
+
+    .upcoming-events-section {
+      padding-bottom: 44px;
+    }
+
+    .partners-section {
+      background: var(--sky-light);
+      padding-top: 44px;
+      padding-bottom: 44px;
+    }
+
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .partners-grid .partner-card {
+      width: 140px;
+    }
+
+    .partner-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1.5px solid rgba(126,200,227,0.2);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(74,159,191,0.14);
+    }
+
+    .partner-card img {
+      max-width: 100%;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .partner-card img.partner-logo-lg {
+      height: 76px;
+    }
+
+    .partner-card span {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      text-align: center;
+    }
+
     .event-card-glow {
       animation: event-glow-pulse 2s ease-in-out infinite;
     }
@@ -302,6 +416,31 @@
       padding: 4px 10px;
       border-radius: 100px;
       z-index: 1;
+    }
+
+    .event-meta-split {
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .event-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .event-meta-label {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--sky-dark);
+      background: var(--cloud);
+      padding: 2px 8px;
+      border-radius: 6px;
+      min-width: 44px;
+      text-align: center;
     }
 
     .event-click-hint {
@@ -409,6 +548,24 @@
       margin-top: 8px; display: flex; align-items: center; gap: 8px;
     }
 
+    .modal-meta-split {
+      display: flex;
+      gap: 20px;
+      margin-top: 12px;
+    }
+
+    .modal-meta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+    }
+
+    .modal-meta-col .event-meta-label {
+      align-self: flex-start;
+    }
+
     .event-modal-extra {
       margin-top: 18px;
       padding-top: 18px;
@@ -416,12 +573,6 @@
       font-size: 0.9rem;
       color: var(--text-mid);
       line-height: 1.6;
-    }
-
-    .event-modal-extra.empty {
-      font-style: italic;
-      color: var(--sky-dark);
-      opacity: 0.75;
     }
 
     .event-modal-extra p { margin-bottom: 10px; }
@@ -446,6 +597,13 @@
     .event-modal-extra li {
       margin-bottom: 6px;
     }
+
+    .event-modal-location-img {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 4px;
+    }
   </style>
 
   <script src="../js/main.js"></script>
@@ -453,15 +611,24 @@
     const eventModal = document.getElementById('event-modal');
     const eventModalClose = document.getElementById('event-modal-close');
 
+    function buildSplitMetaHTML(metaSplit) {
+      return Array.from(metaSplit.querySelectorAll('.event-meta-row')).map(row => {
+        const label = row.querySelector('.event-meta-label').textContent.trim();
+        const spans = Array.from(row.querySelectorAll('span'))
+          .filter(s => !s.classList.contains('event-meta-label'))
+          .map(s => `<span>${s.textContent.trim()}</span>`)
+          .join('');
+        return `<div class="modal-meta-col"><span class="event-meta-label">${label}</span>${spans}</div>`;
+      }).join('');
+    }
+
     function openEventModal(card) {
       const month = card.querySelector('.month').textContent;
       const day = card.querySelector('.day').textContent;
       const weekday = card.querySelector('.event-weekday').textContent;
       const title = card.querySelector('.event-type').textContent;
       const desc = card.querySelector('.event-body p') ? card.querySelector('.event-body p').textContent : '';
-      const metaSpans = card.querySelectorAll('.event-meta span');
-      const location = metaSpans[0] ? metaSpans[0].textContent : '';
-      const time = metaSpans[1] ? metaSpans[1].textContent : '';
+      const metaSplit = card.querySelector('.event-meta-split');
       const extraContent = card.querySelector('.event-extra-content');
 
       document.getElementById('event-modal-month').textContent = month;
@@ -469,8 +636,24 @@
       document.getElementById('event-modal-weekday').textContent = weekday;
       document.getElementById('event-modal-title').textContent = title;
       document.getElementById('event-modal-desc').textContent = desc;
-      document.getElementById('event-modal-location').textContent = location;
-      document.getElementById('event-modal-time').textContent = time;
+
+      const locationDiv = document.getElementById('event-modal-location');
+      const timeDiv = document.getElementById('event-modal-time');
+      const splitDiv = document.getElementById('event-modal-meta-split');
+
+      if (metaSplit) {
+        splitDiv.innerHTML = buildSplitMetaHTML(metaSplit);
+        splitDiv.hidden = false;
+        locationDiv.hidden = true;
+        timeDiv.hidden = true;
+      } else {
+        const metaSpans = card.querySelectorAll('.event-meta span');
+        locationDiv.textContent = metaSpans[0] ? metaSpans[0].textContent : '';
+        timeDiv.textContent = metaSpans[1] ? metaSpans[1].textContent : '';
+        locationDiv.hidden = false;
+        timeDiv.hidden = false;
+        splitDiv.hidden = true;
+      }
 
       const isPast = card.classList.contains('event-card-past');
       document.getElementById('event-modal-past-stamp').hidden = !isPast;
@@ -479,10 +662,10 @@
       const extraDiv = document.getElementById('event-modal-extra');
       if (extraContent && extraContent.innerHTML.trim()) {
         extraDiv.innerHTML = extraContent.innerHTML;
-        extraDiv.classList.remove('empty');
+        extraDiv.hidden = false;
       } else {
-        extraDiv.textContent = 'Check back at a later date for more information.';
-        extraDiv.classList.add('empty');
+        extraDiv.innerHTML = '';
+        extraDiv.hidden = true;
       }
 
       eventModal.classList.add('open');
