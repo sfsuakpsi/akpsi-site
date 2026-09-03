@@ -501,6 +501,20 @@ nav.scrolled .nav-links a:hover {
   display: inline-block;
 }
 
+/* pulsing aura, same color/timing as the event-card-glow effect on the events page */
+.btn-glow {
+  animation: btn-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes btn-glow-pulse {
+  0%, 100% {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 16px rgba(0,0,0,0.15), 0 0 0 rgba(44,111,172,0);
+  }
+  50% {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 16px rgba(0,0,0,0.15), 0 0 24px 6px rgba(44,111,172,0.55);
+  }
+}
+
 .btn-outline:hover {
   background: rgba(255,255,255,0.18);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 8px 24px rgba(0,0,0,0.2);
@@ -1741,43 +1755,142 @@ footer {
      after it — every inner page (about/apply/brothers/events/faq) shares
      this pattern, so targeting the adjacent-sibling covers all of them */
   .page-hero + section { padding-top: 28px; }
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  nav { min-width: unset; width: calc(100% - 32px); top: 12px; }
-  /* .nav-pill has transform + backdrop-filter, either of which creates a
-     containing block for position:fixed descendants — neutralize both here
-     so .nav-links.open (fixed) positions against the viewport, not the pill. */
-  .nav-pill {
-    position: static;
-    left: auto;
-    transform: none;
-    padding: 0;
-    height: auto;
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: none;
-    box-shadow: none;
+  /* smaller hero description text on mobile */
+  .hero p { font-size: 0.95rem; }
+  /* smaller so "August 24th – September 10th" fits on one line instead of
+     wrapping "10th" onto its own line, crowding the paragraph below */
+  .hero-dates { font-size: 0.8rem; }
+  /* smaller, tighter buttons so Interest Form + Rush Events fit side by side */
+  .hero-btns { gap: 10px; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline {
+    padding: 12px 18px;
+    font-size: 0.82rem;
   }
-  .nav-links.open {
+  /* padding matches the 16px top gap (nav's own top:12px + half the 8px
+     leftover from centering the 44px logo/hamburger in nav's 52px height)
+     so the logo sits the same distance from the right edge as from the top */
+  nav { padding: 0 16px; }
+  nav { min-width: unset; top: 12px; }
+  /* .nav-links is nested inside .nav-pill in the markup — display:none
+     here would hide it too (a display:none ancestor hides descendants
+     even when they're position:fixed). display:contents instead removes
+     just the pill's own box from nav's flex layout (so it stops being an
+     invisible third item throwing off justify-content:space-between)
+     while still rendering .nav-links normally. */
+  .nav-pill {
+    display: contents;
+  }
+
+  /* Side-panel mobile nav: slides in from the right, covers roughly half
+     the screen (not the whole thing), white with a decorative blue wave
+     along the bottom. Kept in flex layout (not display:none) and slid
+     off-screen via transform so it can animate; visibility hides it from
+     click/tab focus while closed without breaking the transition. */
+  .nav-links {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     position: fixed;
-    top: 80px;
-    left: 16px;
-    right: 16px;
-    background: rgba(15, 35, 64, 0.88);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    padding: 24px 28px 28px;
-    gap: 18px;
-    z-index: 99;
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-    transform: none;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 62%;
+    min-width: 230px;
+    max-width: 320px;
+    height: 100dvh;
+    gap: 22px;
+    background: var(--white);
+    padding: 110px 32px 40px;
+    z-index: 200;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 16px 0 48px rgba(0,0,0,0.25);
+    overflow: hidden;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.35s ease, visibility 0s linear 0.35s;
   }
-  .hamburger { display: flex; }
+  .nav-links.open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.35s ease, visibility 0s;
+  }
+  /* decorative wave along the bottom of the panel */
+  .nav-links::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 140px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150' preserveAspectRatio='none'%3E%3Cpath d='M0,70 C60,30 120,100 180,60 C230,30 270,80 300,50 L300,150 L0,150 Z' fill='%232C6FAC'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+    pointer-events: none;
+  }
+  /* white-panel text colors (base + nav.scrolled rules are styled for the
+     translucent/dark-on-navy desktop pill — !important since nav.scrolled
+     .nav-links a otherwise outranks this on specificity alone) */
+  .nav-links a {
+    position: relative;
+    color: var(--text-dark) !important;
+    font-size: 0.95rem;
+  }
+  .nav-links a:hover { color: var(--sky-dark) !important; }
+  .nav-links a.active-page {
+    color: var(--sky-dark) !important;
+    border-bottom-color: var(--sky-dark);
+  }
+  .nav-links .nav-cta {
+    position: relative;
+    background: var(--navy) !important;
+    color: var(--white) !important;
+    border-color: var(--navy) !important;
+  }
+  /* dim + blur the page behind the panel while it's open */
+  body.nav-open { overflow: hidden; }
+  body.nav-open::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 35, 64, 0.25);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 150;
+  }
+  /* nav has its own z-index (100), which is below the backdrop overlay
+     (150) — bump the whole bar above it so the hamburger stays sharp and
+     tappable to close, instead of getting blurred with everything else */
+  body.nav-open nav { z-index: 201; }
+  /* logo on the left, hamburger on the right as a self-contained circular
+     glass button styled like the desktop nav-pill. Its own background
+     gives it contrast against any backdrop (hero photo, white section
+     once scrolled, or the open panel), so — unlike plain white bars on
+     transparent — it never needs scroll/open-state color swaps. */
+  nav { justify-content: space-between; }
+  .nav-logo { order: 1; }
+  .hamburger {
+    order: 2;
+    display: flex;
+    position: relative;
+    z-index: 201;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 8px 32px rgba(0,0,0,0.2);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  /* dark variant also when the panel is open (regardless of scroll position)
+     since the hamburger then sits over the white panel, not the hero */
+  nav.scrolled .hamburger,
+  body.nav-open .hamburger {
+    background: rgba(15, 35, 64, 0.82);
+    border-color: rgba(255,255,255,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 32px rgba(0,0,0,0.28);
+  }
   .pillars-grid { grid-template-columns: 1fr; }
   .brothers-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .brother-photo { height: 160px; }
