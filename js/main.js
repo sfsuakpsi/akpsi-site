@@ -10,12 +10,25 @@ function updateNav() {
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
 
-// Mobile nav toggle
+// Mobile nav toggle (side panel + dimmed/blurred backdrop on body)
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
+function setNavOpen(open) {
+  navLinks.classList.toggle('open', open);
+  document.body.classList.toggle('nav-open', open);
+}
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    setNavOpen(!navLinks.classList.contains('open'));
+  });
+  // tapping the dimmed backdrop (outside the panel) closes it
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (navLinks.contains(e.target) || hamburger.contains(e.target)) return;
+    setNavOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setNavOpen(false);
   });
 }
 
