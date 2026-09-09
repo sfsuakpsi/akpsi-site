@@ -21,7 +21,8 @@
   --cloud: #EEF4FB;
   --text-dark: #0F2440;
   --text-mid: #2D5580;
-  --nav-h: 72px;
+  --banner-h: 40px;
+  --nav-h: calc(var(--banner-h) + 72px);
 }
 
 * {
@@ -90,10 +91,29 @@ body {
   to   { transform: translateX(0%); }
 }
 
+/* ── SITE BANNER ── */
+.site-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 105;
+  background: var(--white);
+  color: var(--navy);
+  border-bottom: 1px solid var(--sky-light);
+  text-align: center;
+  padding: 12px 20px;
+  line-height: 16px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
 /* ── NAV ── */
 nav {
   position: fixed;
-  top: 16px;
+  top: calc(var(--banner-h) + 16px);
   left: 0;
   right: 0;
   height: 52px;
@@ -856,7 +876,7 @@ section {
   min-height: 38vh;
   display: flex;
   align-items: flex-end;
-  padding: 130px 40px 60px;
+  padding: calc(var(--banner-h) + 130px) 40px 60px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(160deg, #0F2F54 0%, #2C6FAC 100%);
@@ -1771,7 +1791,7 @@ footer {
      leftover from centering the 44px logo/hamburger in nav's 52px height)
      so the logo sits the same distance from the right edge as from the top */
   nav { padding: 0 16px; }
-  nav { min-width: unset; top: 12px; }
+  nav { min-width: unset; top: calc(var(--banner-h) + 12px); }
   /* .nav-links is nested inside .nav-pill in the markup — display:none
      here would hide it too (a display:none ancestor hides descendants
      even when they're position:fixed). display:contents instead removes
@@ -1900,7 +1920,7 @@ footer {
   .footer-top { grid-template-columns: 1fr; }
   .stats-inner { flex-direction: column; gap: 24px; }
   .apply-form { padding: 28px 22px; }
-  .page-hero { padding: 100px 20px 48px; }
+  .page-hero { padding: calc(var(--banner-h) + 100px) 20px 48px; }
   /* mobile only: header, then photo, then the rest of the text, in the
      president welcome section. display:contents lifts president-text's
      children up to be direct grid items of president-inner so each piece
