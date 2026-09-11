@@ -499,6 +499,11 @@ nav.scrolled .nav-links a:hover {
   display: inline-block;
 }
 
+/* wider pill for a single standalone hero CTA (no second button beside it) */
+.btn-wide {
+  padding: 16px 64px;
+}
+
 .btn-primary:hover {
   background: var(--lime-dark);
   transform: translateY(-2px);
@@ -1780,13 +1785,6 @@ footer {
   /* smaller so "August 24th – September 10th" fits on one line instead of
      wrapping "10th" onto its own line, crowding the paragraph below */
   .hero-dates { font-size: 0.8rem; }
-  /* smaller, tighter buttons so Interest Form + Rush Events fit side by side */
-  .hero-btns { gap: 10px; }
-  .hero-btns .btn-primary,
-  .hero-btns .btn-outline {
-    padding: 12px 18px;
-    font-size: 0.82rem;
-  }
   /* padding matches the 16px top gap (nav's own top:12px + half the 8px
      leftover from centering the 44px logo/hamburger in nav's 52px height)
      so the logo sits the same distance from the right edge as from the top */
