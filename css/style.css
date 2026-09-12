@@ -21,7 +21,7 @@
   --cloud: #EEF4FB;
   --text-dark: #0F2440;
   --text-mid: #2D5580;
-  --banner-h: 40px;
+  --banner-h: 0px;
   --nav-h: calc(var(--banner-h) + 72px);
 }
 
@@ -89,25 +89,6 @@ body {
 @keyframes ticker-right {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0%); }
-}
-
-/* ── SITE BANNER ── */
-.site-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 105;
-  background: var(--white);
-  color: var(--navy);
-  border-bottom: 1px solid var(--sky-light);
-  text-align: center;
-  padding: 12px 20px;
-  line-height: 16px;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.02em;
 }
 
 /* ── NAV ── */
@@ -1207,18 +1188,6 @@ section {
   font-size: 0.82rem;
   color: var(--sky-dark);
   font-weight: 500;
-}
-
-/* ── DEADLINE BANNER ── */
-.deadline-banner {
-  background: var(--navy);
-  color: var(--white);
-  text-align: center;
-  padding: 20px 40px;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.01em;
 }
 
 /* ── APPLY SECTION ── */
