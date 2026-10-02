@@ -642,13 +642,13 @@
 
       const spotifyDiv = document.getElementById('modal-spotify');
       const spotifyEmbed = document.getElementById('spotify-embed');
+      spotifyEmbed.src = '';
       if (spotify && !spotify.includes('placeholder')) {
         // Convert open.spotify.com/track/ID → open.spotify.com/embed/track/ID
         const embedSrc = spotify.replace('open.spotify.com/', 'open.spotify.com/embed/');
-        spotifyEmbed.src = embedSrc;
         spotifyDiv.style.display = 'block';
+        requestAnimationFrame(() => { spotifyEmbed.src = embedSrc; });
       } else {
-        spotifyEmbed.src = '';
         spotifyDiv.style.display = 'none';
       }
 
